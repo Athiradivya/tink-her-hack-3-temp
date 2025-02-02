@@ -1,4 +1,4 @@
-# [Project Name] 🎯
+# [Project Nam] 🎯
 
 
 ## Basic Details
