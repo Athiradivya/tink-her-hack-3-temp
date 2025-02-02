@@ -1,23 +1,23 @@
-# [Project Nam] 🎯
+# [TravelYourWay] 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: [Codezilla]
 
 
 ### Team Members
-- Member 1: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Member 1: [Athira Rajeev] - [College of Engineering, Adoor]
+- Member 2: [Ema Mariya Sam] - [College of Engineering, Adoor]
+- Member 3: [Anila Sara John] - [College of Engineering, Adoor]
 
 ### Hosted Project Link
-[mention your project hosted project link here]
+[]
 
 ### Project Description
-[2-3 lines about what your project does]
+[This project aims to match travellers with similar interests.Try to connect together to find a new destination!]
 
 ### The Problem statement
-[What ridiculous problem are you solving?]
+[Exploring solo should feel exciting,not scary.]
 
 ### The Solution
 [How are you solving it? Keep it fun!]
