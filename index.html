@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelYourWay - Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            height: 100vh;
+            text-align: center;
+        }
+        .left, .right {
+            flex: 1;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .left {
+            background: linear-gradient(to bottom, #ff7e5f, #feb47b);
+        }
+
+        .right {
+            background: linear-gradient(to bottom, #6a11cb, #2575fc);
+        }
+        .slideshow-text {
+            position: absolute;
+            width: 80%;
+            transition: opacity 1s ease-in-out;
+            opacity: 0;
+        }
+
+        .slideshow-text.active {
+            opacity: 1;
+        }
+        .middle {
+            flex: 1;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 80%;
+            max-width: 350px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 15px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .input-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background: #388e3c;
+        }
+
+        #error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="left">
+        <div class="slideshow-text active">🌍 Find your perfect travel buddy!</div>
+        <div class="slideshow-text">✈️ Connect with travelers sharing your vibe.</div>
+        <div class="slideshow-text">🏕️ Discover safe & exciting destinations.</div>
+    </div>
+
+    <div class="middle">
+        <div class="login-container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required>
+                </div>
+                <button type="submit">Login</button>
+                <p id="error-message"></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="right">
+        <div class="slideshow-text active">🧳 Plan your dream trip effortlessly.</div>
+        <div class="slideshow-text">🚀 Meet like-minded explorers.</div>
+        <div class="slideshow-text">🛫 Enjoy stress-free group travel.</div>
+    </div>
+
+    <script>
+       function startTextSlideshow(container) {
+            let slides = container.querySelectorAll('.slideshow-text');
+            let index = 0;
+
+            setInterval(() => {
+                slides[index].classList.remove('active');
+                index = (index + 1) % slides.length;
+                slides[index].classList.add('active');
+            }, 3000); 
+        }
+
+        document.querySelectorAll('.left, .right').forEach(startTextSlideshow);
+
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const errorMessage = document.getElementById("error-message");
+
+            if (email === "admin@eg.com" && password === "pswd123") {
+                alert("Login successful!");
+                window.location.href = "travelapp1.html";
+            } else {
+                errorMessage.textContent = "Invalid email or password!";
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelYourWay - Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(to bottom, rgba(237, 171, 236, 0.7), rgba(214, 119, 217, 0.7));
+            text-align: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 600px;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            color: black;
+            position: relative;
+        }
+
+        .background-image {
+            width: 100%;
+            height: 250px;
+            background-image: url('img4.jpg');
+            background-size: cover;
+            background-position: center;
+            border-radius: 12px 12px 0 0;
+        }
+
+        h1 {
+            color: #ff5e62;
+            font-weight: 600;
+        }
+
+        h5 {
+            color: #333;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #ff5e62;
+            color: white;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #ff3b4a;
+        }
+
+        .section1 {
+            margin-top: 20px;
+            background: #ff9966;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            background: white;
+            color: black;
+            margin: 8px 0;
+            padding: 10px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .remove-btn {
+            background: red;
+            padding: 1px 4px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="background-image"></div>
+        <h1>Where Will You Wander?</h1>
+        <h5>Find Travel Buddies & Safe Places</h5>
+
+        <input type="text" id="buddyName" placeholder="Enter your name">
+        <input type="text" id="buddyDestination" placeholder="Enter destination">
+        <button onclick="addBuddy()">Add Buddy</button>
+        <p id="statusMessage"></p>
+    </div>
+    
+    <div class="container section1">
+        <h2>Travel Buddies List</h2>
+        <ul id="buddyList"></ul>
+    </div>
+
+    <script>
+        function addBuddy() {
+            let name = document.getElementById('buddyName').value;
+            let destination = document.getElementById('buddyDestination').value;
+
+            if (name && destination) {
+                let buddy = { name, destination };
+                let buddies = JSON.parse(localStorage.getItem("travelBuddies")) || [];
+                buddies.push(buddy);
+                localStorage.setItem("travelBuddies", JSON.stringify(buddies));
+                document.getElementById('statusMessage').innerText = "✅ Buddy Added!";
+                loadBuddies();
+            } else {
+                document.getElementById('statusMessage').innerText = "⚠️ Please fill in all fields!";
+            }
+        }
+
+        function loadBuddies() {
+            let buddies = JSON.parse(localStorage.getItem("travelBuddies")) || [];
+            let list = document.getElementById("buddyList");
+            list.innerHTML = "";
+            
+            buddies.forEach((buddy, index) => {
+                let li = document.createElement("li");
+                li.innerHTML = `${buddy.name} is traveling to ${buddy.destination} 
+                                <button onclick="removeBuddy(${index})" class="remove-btn">X</button>`;
+                list.appendChild(li);
+            });
+        }
+
+        function removeBuddy(index) {
+            let buddies = JSON.parse(localStorage.getItem("travelBuddies")) || [];
+            buddies.splice(index, 1);
+            localStorage.setItem("travelBuddies", JSON.stringify(buddies));
+            loadBuddies();
+        }
+
+        window.onload = loadBuddies;
+    </script>
+</body>
+</html>
